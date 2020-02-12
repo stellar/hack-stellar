@@ -5,7 +5,7 @@
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
     "generate": "stencil generate",
-    "deploy": "now --prod --confirm --name hack-stellar"
+    "deploy": "now --prod --confirm -C --name hack-stellar"
   },
   "dependencies": {
     "@stencil/core": "^1.8.4",

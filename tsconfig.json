@@ -17,7 +17,6 @@
     "jsxFactory": "h",
     "baseUrl": "./src",
     "paths": {
-      "@prompt/*": ["components/prompt/*"],
       "@services/*": ["services/*"]
     }
   },
