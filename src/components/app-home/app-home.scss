@@ -15,6 +15,16 @@
   button {
     margin-bottom: 10px;
     font-size: 16px;
+
+    &.loading {
+      pointer-events: none;
+      color: transparent;
+
+      &:after {
+        content: '...';
+        color: black;
+      }
+    }
   }
   p {
     margin-bottom: 20px;

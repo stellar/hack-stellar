@@ -3,6 +3,13 @@ import { Keypair, Server, AccountResponse, TransactionBuilder, BASE_FEE, Network
 
 import handleError from '../../services/error'
 
+interface Loaders {
+  fund?: boolean,
+  update?: boolean,
+  create?: boolean,
+  pay?: boolean
+}
+
 @Component({
   tag: 'app-home',
   styleUrl: 'app-home.scss',
@@ -15,6 +22,7 @@ export class AppHome {
   @State() friend: Keypair
   @State() payment: Horizon.SubmitTransactionResponse
   @State() error: Error
+  @State() loading: Loaders = {}
 
   componentWillLoad() {
 
@@ -33,6 +41,7 @@ export class AppHome {
   async accountFund() {
     try {
       this.error = null
+      this.loading = {...this.loading, fund: true}
 
       await this.server.friendbot(
         this.keypair.publicKey()
@@ -41,15 +50,25 @@ export class AppHome {
         console.log(res)
         this.accountUpdate()
       })
+      .catch((err) => {
+        if (err.response.detail.indexOf('createAccountAlreadyExist') > -1)
+          this.accountUpdate()
+        else
+          throw err
+      })
     }
     catch(err) {
       this.error = handleError(err)
+    }
+    finally {
+      this.loading = {...this.loading, fund: false}
     }
   }
 
   async accountUpdate() {
     try {
       this.error = null
+      this.loading = {...this.loading, update: true}
 
       await this.server
       .loadAccount(this.keypair.publicKey())
@@ -62,6 +81,9 @@ export class AppHome {
     catch (err) {
       this.error = handleError(err)
     }
+    finally {
+      this.loading = {...this.loading, update: false}
+    }
   }
 
   async accountCreate() {
@@ -69,6 +91,7 @@ export class AppHome {
       this.error = null
       this.friend = null
       this.payment = null
+      this.loading = {...this.loading, create: true}
 
       const friend = Keypair.random()
 
@@ -97,12 +120,16 @@ export class AppHome {
     } catch(err) {
       this.error = handleError(err)
     }
+    finally {
+      this.loading = {...this.loading, create: false}
+    }
   }
 
-  async paymentSend() {
+  async accountPay() {
     try {
       this.error = null
       this.payment = null
+      this.loading = {...this.loading, pay: true}
 
       await this.server
       .loadAccount(this.keypair.publicKey())
@@ -130,6 +157,9 @@ export class AppHome {
     } catch(err) {
       this.error = handleError(err)
     }
+    finally {
+      this.loading = {...this.loading, pay: false}
+    }
   }
 
   // END METHODS
@@ -147,16 +177,16 @@ export class AppHome {
           <button onClick={() => this.keypairGenerate()}>Generate Keypair</button>
           {!!this.keypair ? <p>{this.keypair.publicKey()}</p> : null}
 
-          <button onClick={() => this.accountFund()}>Fund Account</button>
+          <button class={this.loading.fund ? 'loading' : null} onClick={() => this.accountFund()} disabled={this.loading.fund}>Fund Account</button>
           {!!this.account ? <p class="check">✅</p> : null}
 
-          <button onClick={() => this.accountUpdate()}>Update Account</button>
+          <button class={this.loading.update ? 'loading' : null} onClick={() => this.accountUpdate()} disabled={this.loading.update}>Update Account</button>
           {!!this.account ? <pre class="account">{JSON.stringify(this.account, null, 2)}</pre> : null}
 
-          <button onClick={() => this.accountCreate()}>Create Friend Account</button>
+          <button class={this.loading.create ? 'loading' : null} onClick={() => this.accountCreate()} disabled={this.loading.create}>Create Friend Account</button>
           {!!this.friend ? <p class="check">✅</p> : null}
 
-          <button onClick={() => this.paymentSend()}>Send Friend Payment</button>
+          <button class={this.loading.pay ? 'loading' : null} onClick={() => this.accountPay()} disabled={this.loading.pay}>Send Friend Payment</button>
           {!!this.payment ? <p class="check">✅</p> : null}
         </div>
       </div>
