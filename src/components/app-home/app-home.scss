@@ -1,0 +1,39 @@
+.app-home {
+  max-width: 620px;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  button {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  p {
+    margin-bottom: 20px;
+  }
+  pre {
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    overflow: scroll;
+    width: 100%;
+  }
+  .check {
+    font-size: 20px;
+  }
+  .error {
+    background-color: orangered;
+    color: white;
+  }
+  .account {
+    background-color: whitesmoke;
+  }
+}
