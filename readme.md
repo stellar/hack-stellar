@@ -54,6 +54,6 @@ Another central operation of Stellar transactions is making payments. In this me
 ---
 
 ### Helpful links:
-[https://www.stellar.org/developers](https://www.stellar.org/developers)
-[https://stellar.github.io/js-stellar-sdk/](https://stellar.github.io/js-stellar-sdk/)
-[https://github.com/stellar/js-stellar-sdk](https://github.com/stellar/js-stellar-sdk)
+- [https://www.stellar.org/developers](https://www.stellar.org/developers)
+- [https://stellar.github.io/js-stellar-sdk/](https://stellar.github.io/js-stellar-sdk/)
+- [https://github.com/stellar/js-stellar-sdk](https://github.com/stellar/js-stellar-sdk)
