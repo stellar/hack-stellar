@@ -1,7 +1,17 @@
 import { Component, h, State } from '@stencil/core'
-import { Keypair, Server, AccountResponse, TransactionBuilder, BASE_FEE, Networks, Operation, Asset, Horizon } from 'stellar-sdk'
+import {
+  Keypair,
+  Server,
+  AccountResponse,
+  TransactionBuilder,
+  BASE_FEE,
+  Networks,
+  Operation,
+  Asset,
+  Horizon
+} from 'stellar-sdk'
 
-import handleError from '../../services/error'
+import handleError from '@services/error'
 
 interface Loaders {
   fund?: boolean,
