@@ -10,6 +10,13 @@ import {
   Asset,
   Horizon
 } from 'stellar-sdk'
+import {
+  map as loMap,
+  range as loRange,
+  take as loTake,
+  takeRight as loTakeRight
+} from 'lodash-es'
+import copy from 'copy-to-clipboard'
 
 import handleError from '@services/error'
 
@@ -185,7 +192,24 @@ export class AppHome {
           {this.error ? <pre class="error">{JSON.stringify(this.error, null, 2)}</pre> : null}
 
           <button onClick={() => this.keypairGenerate()}>Generate Keypair</button>
-          {!!this.keypair ? <p>{this.keypair.publicKey()}</p> : null}
+          {!!this.keypair ?
+            <div class="keys">
+              <div class="key">
+                🐵 {this.keypair.publicKey()}
+                <button onClick={() => copy(this.keypair.publicKey())}>Copy</button>
+              </div>
+              <div class="key">
+                🙈 {
+                  loTake(this.keypair.secret(), 7).join('')
+                  +
+                  loMap(loRange(42), () => '•').join('')
+                  +
+                  loTakeRight(this.keypair.secret(), 7).join('')
+                }
+                <button onClick={() => copy(this.keypair.secret())}>Copy</button>
+              </div>
+            </div>
+          : null}
 
           <button class={this.loading.fund ? 'loading' : null} onClick={() => this.accountFund()} disabled={this.loading.fund}>Fund Account</button>
           {!!this.account ? <p class="check">✅</p> : null}

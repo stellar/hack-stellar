@@ -2,9 +2,8 @@
   max-width: 620px;
 
   h2 {
-    font-size: 18px;
+    line-height: 1.2;
     margin-bottom: 20px;
-    font-weight: 600;
   }
 }
 .actions {
@@ -38,6 +37,21 @@
     margin-bottom: 20px;
     overflow: scroll;
     width: 100%;
+    font-family: monospace;
+  }
+  .keys {
+    font-family: monospace;
+    font-size: 14px;
+    margin-bottom: 20px;
+
+    button {
+      font-size: 12px;
+      margin: 0 0 0 10px;
+    }
+    .key {
+      display: flex;
+      align-items: center;
+    }
   }
   .check {
     font-size: 20px;
