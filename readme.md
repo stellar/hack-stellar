@@ -24,7 +24,11 @@ To build the app for production, run:
 npm run build
 ```
 
+<<<<<<< HEAD
 ## [Stellar Functions](https://github.com/tyvdh/hack-stellar/blob/master/src/components/app-home/app-home.tsx#L49-L193) Featured in this Boilerplate
+=======
+## [Stellar Functions](https://github.com/tyvdh/hack-stellar/blob/master/src/components/app-home/app-home.tsx#L48-L182) Featured in this Boilerplate
+>>>>>>> 6a4eb53abd44260e7ce5b4086aff272006b38a96
 
 ```ts
 keypairGenerate() {}
