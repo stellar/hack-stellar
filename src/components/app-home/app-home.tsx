@@ -206,17 +206,17 @@ export class AppHome {
           {!!this.keypair ?
             <div class="keys">
               <div class="key">
-                🐵 {this.keypair.publicKey()}
+                <p>🐵 {this.keypair.publicKey()}</p>
                 <button onClick={() => copy(this.keypair.publicKey())}>Copy</button>
               </div>
               <div class="key">
-                🙈 {
+                <p>🙈 {
                   loTake(this.keypair.secret(), 7).join('')
                   +
                   loMap(loRange(42), () => '•').join('')
                   +
                   loTakeRight(this.keypair.secret(), 7).join('')
-                }
+                }</p>
                 <button onClick={() => copy(this.keypair.secret())}>Copy</button>
               </div>
             </div>

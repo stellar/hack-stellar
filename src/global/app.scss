@@ -30,8 +30,17 @@ html {
 }
 body {
   background: white;
-  padding: 10px;
   -webkit-perspective: 1000;
   -webkit-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
+}
+button {
+  appearance: none;
+  border-radius: 0;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: none;
 }
