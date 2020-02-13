@@ -9,7 +9,7 @@ export class AppRoot {
   render() {
     return (
       <div class="app-root">
-        <a href="https://github.com/tyvdh/hack-stellar">View on GitHub</a>
+        <a href="https://github.com/tyvdh/hack-stellar" target="_blank">View on GitHub</a>
 
         <stencil-router>
           <stencil-route-switch scrollTopOffset={0}>
