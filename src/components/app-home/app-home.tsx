@@ -33,6 +33,7 @@ interface Loaders {
 })
 export class AppHome {
   private server: Server = new Server('https://horizon-testnet.stellar.org')
+  private retry: boolean
 
   @State() keypair: Keypair
   @State() account: AccountResponse
@@ -52,6 +53,7 @@ export class AppHome {
     this.account = null
     this.friend = null
     this.payment = null
+    this.retry = null
     this.keypair = Keypair.random()
   }
 
@@ -66,12 +68,6 @@ export class AppHome {
       .then((res) => {
         console.log(res)
         this.accountUpdate()
-      })
-      .catch((err) => {
-        if (err.response.detail.indexOf('createAccountAlreadyExist') > -1)
-          this.accountUpdate()
-        else
-          throw err
       })
     }
     catch(err) {
@@ -93,6 +89,21 @@ export class AppHome {
         console.log(account)
         delete account._links
         this.account = account
+        this.retry = null
+      })
+      .catch((err) => { // Temp fix for https://github.com/stellar/go/issues/2272#issuecomment-585878261
+        const error = handleError(err)
+
+        if (
+          error
+          && error.status === 404
+          && !this.retry
+        ) {
+          this.retry = true
+          return new Promise((resolve) => setTimeout(async () => resolve(this.accountUpdate()), 1000))
+        }
+
+        else throw err
       })
     }
     catch (err) {
