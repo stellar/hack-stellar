@@ -91,20 +91,6 @@ export class AppHome {
         this.account = account
         this.retry = null
       })
-      .catch((err) => { // Temp fix for https://github.com/stellar/go/issues/2272#issuecomment-585878261
-        const error = handleError(err)
-
-        if (
-          error
-          && error.status === 404
-          && !this.retry
-        ) {
-          this.retry = true
-          return new Promise((resolve) => setTimeout(async () => resolve(this.accountUpdate()), 1000))
-        }
-
-        else throw err
-      })
     }
     catch (err) {
       this.error = handleError(err)
