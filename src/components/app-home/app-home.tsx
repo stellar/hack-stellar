@@ -33,7 +33,6 @@ interface Loaders {
 })
 export class AppHome {
   private server: Server = new Server('https://horizon-testnet.stellar.org')
-  private retry: boolean
 
   @State() keypair: Keypair
   @State() account: AccountResponse
@@ -53,7 +52,6 @@ export class AppHome {
     this.account = null
     this.friend = null
     this.payment = null
-    this.retry = null
     this.keypair = Keypair.random()
   }
 
@@ -89,7 +87,6 @@ export class AppHome {
         console.log(account)
         delete account._links
         this.account = account
-        this.retry = null
       })
     }
     catch (err) {
