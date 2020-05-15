@@ -54,6 +54,15 @@ Another central operation of Stellar transactions is making payments. In this me
 ---
 
 ### Helpful links:
+#### Docs
 - [https://www.stellar.org/developers](https://www.stellar.org/developers)
-- [https://stellar.github.io/js-stellar-sdk/](https://stellar.github.io/js-stellar-sdk/)
+- [https://stellar.github.io/js-stellar-sdk](https://stellar.github.io/js-stellar-sdk/)
 - [https://github.com/stellar/js-stellar-sdk](https://github.com/stellar/js-stellar-sdk)
+#### Explore
+- [https://stellar.expert](https://stellar.expert/)
+- [https://stellarbeat.io](https://stellarbeat.io/)
+- [https://www.stellar.org/laboratory](https://www.stellar.org/laboratory/)
+#### Wallets
+- [https://solarwallet.io](https://solarwallet.io/)
+- [https://testnet.interstellar.exchange](https://testnet.interstellar.exchange/)
+- [https://stellarterm.com/testnet](https://stellarterm.com/testnet)
